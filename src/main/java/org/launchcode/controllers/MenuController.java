@@ -22,10 +22,10 @@ import javax.validation.Valid;
 public class MenuController {
 
     @Autowired
-    public CheeseDao cheeseDao;
+    private CheeseDao cheeseDao;
 
     @Autowired
-    public MenuDao menuDao;
+    private MenuDao menuDao;
 
 
     @RequestMapping(value = "")
@@ -33,6 +33,7 @@ public class MenuController {
 
         model.addAttribute("menus", menuDao.findAll());
         model.addAttribute("title", "Menus");
+
 
         return "menu/index";
     }

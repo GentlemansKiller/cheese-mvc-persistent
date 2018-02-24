@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by LaunchCode
@@ -49,8 +47,10 @@ public class CheeseController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddCheeseForm(@ModelAttribute  @Valid Cheese newCheese,
-                                       Errors errors, @RequestParam int categoryId, Model model) {
+    public String processAddCheeseForm(@ModelAttribute @Valid Cheese newCheese,
+                                       Errors errors,
+                                       @RequestParam int categoryId,
+                                       Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Cheese");
@@ -60,6 +60,7 @@ public class CheeseController {
         Category cat = categoryDao.findOne(categoryId);
         newCheese.setCategory(cat);
         cheeseDao.save(newCheese);
+        String value = "success";
         return "redirect:";
     }
 
